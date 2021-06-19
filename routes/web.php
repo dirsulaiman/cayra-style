@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +32,13 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home', []);
 });
+
+// Route::get('/products', function () {
+//     return Inertia::render('Products', [ProductController::class, 'index']);
+// })->name('product.index');
+
+// Route::group([], function () {
+//     Route::get('/products', 'ProductController@index')->name('product.index');
+// });
+
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
