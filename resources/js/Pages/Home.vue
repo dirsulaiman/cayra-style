@@ -7,15 +7,18 @@
                     <!-- <img src="../assets/img/logo.png" alt="" class="w-8" /> -->
                     <span class="ml-3 text-lg text-white">CayraStyle.ID</span>
                 </a>
-                <nav class="md:mr-auto md:ml-4 pt-3 lg:pt-0 md:py-1 lg:pl-4 border-t lg:border-t-0 lg:border-l border-gray-200 flex flex-wrap items-center justify-center text-sm" >
+                <nav
+                    class="md:mr-auto md:ml-4 pt-3 lg:pt-0 md:py-1 lg:pl-4 border-t lg:border-t-0 lg:border-l border-gray-200 flex flex-wrap items-center justify-center text-sm">
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https://goo.gl/maps/johz8zySZ1PfSwZv9" target="blank">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white "
+                            href="https://goo.gl/maps/johz8zySZ1PfSwZv9" target="blank">
                             <i class="fas fa-map-marker-alt"></i>
                             Lokasi Toko
                         </a>
                     </div>
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https:/shp.ee/rc23fxy" target="blank">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https:/shp.ee/rc23fxy"
+                            target="blank">
                             <i class="fas fa-shopping-bag"></i>
                             Shopee
                         </a>
@@ -39,7 +42,8 @@
                         </a>
                     </div>
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https://wa.me/6282331313117" target="blank">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white "
+                            href="https://wa.me/6282331313117" target="blank">
                             <i class="fab fa-whatsapp"></i>
                             WhatsApp
                         </a>
@@ -108,7 +112,7 @@
                 <span class="absolute w-full h-full bg-gradient-to-t from-green-900 via-transparent to-white "></span>
                 <img src="../../img/location.png" alt="location" class="w-full h-full object-cover">
             </div>
-            <div class="relative w-full h-full container px-4 pt-8 pb-40">
+            <div class="relative w-full h-full container px-4 pt-8 pb-40 mx-auto">
                 <div class=" m-auto">
                     <div class="">
                         <p class="text-2xl font-bold text-white pb-2">
@@ -142,11 +146,16 @@
 
         <!-- WA -->
 
-        <div class="relative mt-12 w-full"></div>
+        <div class="relative mt-12 flex " id="app">
+            <div class="h-20 w-20 bg-blue-100"></div>
+            <div class="h-20 w-20 bg-green-100"></div>
+            {{BTCinUSD}}
+        </div>
 
         <footer class="relative bg-gradient-to-r from-red-600 to-yellow-300">
-            <div class="justify-center ">
-                <div class="grid grid-flow-row lg:grid-cols-6 space-y-0 text-center">
+            <div class="justify-center py-8 lg:py-12 flex">
+                <div
+                    class="grid grid-flow-row space-y-2 text-center lg:space-y-0 lg:grid-cols-6 align-middle place-items-end px-8">
                     <div class="">
                         <a target="blank"
                             class="bg-white bg-opacity-10 px-4 hover:bg-opacity-0 rounded-full body-font text-gray-200 hover:text-white ">
@@ -190,6 +199,11 @@
                         </a>
                     </div>
                 </div>
+                <div class="flex items-center border-white border-l">
+                    <div class=" px-8 body-font align-middle">
+                        <span class="text-xl text-white">CayraStyle.ID</span>
+                    </div>
+                </div>
             </div>
         </footer>
     </div>
@@ -206,8 +220,16 @@
 
     export default {
         name: "Home",
+
+        devServer: {
+            proxy: 'https://api.whatdoestrumpthink.com/api/v1/quotes/random',
+        },
+
         data() {
-            return {};
+            return {
+                BTCinUSD: 3759.91,
+                quotes: "",
+            };
         },
         mounted() {
             const vm = this;
@@ -218,26 +240,34 @@
                 const vm = this;
                 const urlPath =
                     "https://api.whatdoestrumpthink.com/api/v1/quotes/random";
-                // vm.axios({
-                //     method: 'get',
-                //     url: urlPath,
-                //     headers: {
-                //         Accept: 'application/json',
-                //         // Authorization: vm.$store.getters.tokenType + ' ' + vm.$store.getters.accessToken
-                //     }
-                // }).then((response) => {
-                //     // console.log(response.data);
-                // }).catch(function (error) {
-                //     // handle error
-                //     // console.log(error);
+                axios({
+                    method: 'GET',
+                    url: urlPath,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+                        // 'Access-Control-Request-Headers' : 'Accept',
+                        'Access-Control-Allow-Headers' : 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
+                        "Access-Control-Allow-Credentials" : "true"
+                        // Authorization: vm.$store.getters.tokenType + ' ' + vm.$store.getters.accessToken
+                    }
+                }).then((response) => {
+                    this.quotes = response.data
+                    console.log(response.data);
+                }).catch(function (error) {
+                    // handle error
+                    console.log(error);
 
-                // });
+                });
 
 
-                // var quotes = axios
-                //     .get("https://api.whatdoestrumpthink.com/api/v1/quotes/random")
-                //     .then((response) => (this.info = response.data.bpi));
+                // var quote = axios
+                //     .get(urlPath)
+                //     .then((response) => (this.quotes = response.data));
             },
         },
     };
+
+
 </script>
