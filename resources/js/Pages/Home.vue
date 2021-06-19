@@ -9,37 +9,37 @@
                 </a>
                 <nav class="md:mr-auto md:ml-4 pt-3 lg:pt-0 md:py-1 lg:pl-4 border-t lg:border-t-0 lg:border-l border-gray-200 flex flex-wrap items-center justify-center text-sm" >
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https://goo.gl/maps/johz8zySZ1PfSwZv9">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https://goo.gl/maps/johz8zySZ1PfSwZv9" target="blank">
                             <i class="fas fa-map-marker-alt"></i>
                             Lokasi Toko
                         </a>
                     </div>
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https:/shp.ee/rc23fxy">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https:/shp.ee/rc23fxy" target="blank">
                             <i class="fas fa-shopping-bag"></i>
                             Shopee
                         </a>
                     </div>
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="" target="blank">
                             <i class="fas fa-store"></i>
                             Tokopedia
                         </a>
                     </div>
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="" target="blank">
                             <i class="fab fa-facebook-square"></i>
                             Facebook
                         </a>
                     </div>
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="" target="blank">
                             <i class="fab fa-instagram"></i>
                             Instagram
                         </a>
                     </div>
                     <div class="bg-white bg-opacity-10 m-1 hover:bg-opacity-0 rounded-full">
-                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https://wa.me/6282331313117">
+                        <a class="m-auto p-5 body-font text-gray-200 hover:text-white " href="https://wa.me/6282331313117" target="blank">
                             <i class="fab fa-whatsapp"></i>
                             WhatsApp
                         </a>
@@ -148,42 +148,42 @@
             <div class="justify-center ">
                 <div class="grid grid-flow-row lg:grid-cols-6 space-y-0 text-center">
                     <div class="">
-                        <a
+                        <a target="blank"
                             class="bg-white bg-opacity-10 px-4 hover:bg-opacity-0 rounded-full body-font text-gray-200 hover:text-white ">
                             <i class="fas fa-map-marker-alt"></i>
                             Lokasi Toko
                         </a>
                     </div>
                     <div class="">
-                        <a
+                        <a target="blank"
                             class="bg-white bg-opacity-10 px-4 hover:bg-opacity-0 rounded-full  body-font text-gray-200 hover:text-white ">
                             <i class="fas fa-shopping-bag"></i>
                             Shopee
                         </a>
                     </div>
                     <div class="">
-                        <a
+                        <a target="blank"
                             class="bg-white bg-opacity-10 px-4 hover:bg-opacity-0 rounded-full  body-font text-gray-200 hover:text-white ">
                             <i class="fas fa-store"></i>
                             Tokopedia
                         </a>
                     </div>
                     <div class="">
-                        <a
+                        <a target="blank"
                             class="bg-white bg-opacity-10 px-4 hover:bg-opacity-0 rounded-full  body-font text-gray-200 hover:text-white ">
                             <i class="fab fa-facebook-square"></i>
                             Facebook
                         </a>
                     </div>
                     <div class="">
-                        <a
+                        <a target="blank"
                             class="bg-white bg-opacity-10 px-4 hover:bg-opacity-0 rounded-full  body-font text-gray-200 hover:text-white ">
                             <i class="fab fa-instagram"></i>
                             Instagram
                         </a>
                     </div>
                     <div class="">
-                        <a
+                        <a target="blank"
                             class="bg-white bg-opacity-10 px-4 hover:bg-opacity-0 rounded-full  body-font text-gray-200 hover:text-white ">
                             <i class="fab fa-whatsapp"></i>
                             WhatsApp
