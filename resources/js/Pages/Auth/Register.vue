@@ -1,8 +1,5 @@
 <template>
     <div class="flex">
-        <!-- <div class="bg-black h-full w-2/3">
-            <div class="w-full h-full bg-gray-700"></div>
-        </div> -->
         <jet-authentication-card class="bg-gradient-to-r from-red-600 to-yellow-300 h-full w-full">
             <template #logo>
                 <p class="text-xl  text-white text-center font-extrabold m-auto my-12 border-white border-t border-b">
@@ -68,6 +65,8 @@
     import JetLabel from '@/Jetstream/Label'
     import JetValidationErrors from '@/Jetstream/ValidationErrors'
 
+    import BrandLogo from '@/Layouts/BrandLogo'
+    
     export default {
         components: {
             JetAuthenticationCard,
