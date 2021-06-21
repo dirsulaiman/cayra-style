@@ -5,6 +5,7 @@
                 <p class="text-xl  text-white text-center font-extrabold m-auto my-12 border-white border-t border-b">
                     CayraStyle.ID
                 </p>
+                <!-- <brand-logo /> -->
             </template>
     
             <jet-validation-errors class="mb-4" />

@@ -2,7 +2,10 @@
     <div class="flex">
         <jet-authentication-card class="bg-gradient-to-r from-red-600 to-yellow-300 h-full w-full">
             <template #logo>
-                <brand-logo />
+                <p class="text-xl  text-white text-center font-extrabold m-auto my-12 border-white border-t border-b">
+                    CayraStyle.ID
+                </p>
+                <!-- <brand-logo /> -->
             </template>
     
             <jet-validation-errors class="mb-4" />
