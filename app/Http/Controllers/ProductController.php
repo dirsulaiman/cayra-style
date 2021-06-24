@@ -19,4 +19,10 @@ class ProductController extends Controller
     public function detail (Request $request, $id) {
         return;
     }
+
+    public function dummy ($id, $image) {
+        $model = Model::where('id', $id);
+        $model->image_id = $image;
+        // $model->update();
+    }
 }
