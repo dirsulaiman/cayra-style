@@ -18,7 +18,7 @@ class CreateProductImagesTable extends Migration
             $table->uuid('product_id');
             $table->string('filename');
             $table->string('dir');
-            $table->bool('is_thumnail')->default(false);
+            $table->bool('is_thumbnail')->default(false);
             $table->timestamps();
         });
     }
