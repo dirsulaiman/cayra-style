@@ -24,4 +24,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id');
     }
+
+    public function links()
+    {
+        return $this->hasMany(ProductLink::class, 'product_id');
+    }
 }

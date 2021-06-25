@@ -15,8 +15,8 @@ class ProductDetail extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'detail_id');
-    }
+    // public function product()
+    // {
+    //     return $this->belongsTo(Product::class, 'detail_id');
+    // }
 }
