@@ -25,4 +25,48 @@ class ProductController extends Controller
         $model->image_id = $image;
         // $model->update();
     }
+
+    public function create()
+    {
+        //return view
+    }
+
+    public function store(Request $request)
+    {
+        $model = Model::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description
+        ]);
+        // check if image
+        // check if detail
+        // check if link
+        $model->save();
+
+    }
+
+    public function show($id)
+    {
+        // return view
+    }
+
+    public function edit($id)
+    {
+        // return view
+    }
+
+    public function update(Request $request, $id)
+    {
+        $model = Model::where('id',  $id);
+        $model->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        Model::destroy($id);
+    }
 }
