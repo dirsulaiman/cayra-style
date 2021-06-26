@@ -14,6 +14,12 @@ class ProductImage extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $fillable = [
+        'product_id',
+        'filename',
+        'dir',
+        'is_thumbnail'
+    ];
 
     // public function product()
     // {
