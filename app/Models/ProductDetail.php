@@ -14,6 +14,9 @@ class ProductDetail extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $fillable = [
+        'category'
+    ];
 
     // public function product()
     // {
