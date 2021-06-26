@@ -14,6 +14,11 @@ class Product extends Model
 
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $fillable = [
+        'name',
+        'price',
+        'description'
+    ];
 
     public function detail()
     {
