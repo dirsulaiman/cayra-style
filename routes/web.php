@@ -28,8 +28,8 @@ Route::get('/', function () {
 //     return Inertia::render('Products', [ProductController::class, 'index']);
 // })->name('product.index');
 
-// Route::group([], function () {
-//     Route::get('/products', 'ProductController@index')->name('product.index');
-// });
+Route::group(['prefix' => 'product'], function () {
+    Route::get('create', [ProductController::class, 'create'])->name('product.create');
+});
 
 Route::get('/products', [ProductController::class, 'index'])->middleware(['role:owner'])->name('product.index');
