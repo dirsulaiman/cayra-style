@@ -30,6 +30,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('store', [ProductController::class, 'store'])->name('product.store');
 });
 
 Route::get('/products', [ProductController::class, 'index'])->middleware(['role:owner'])->name('product.index');
