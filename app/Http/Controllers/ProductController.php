@@ -25,7 +25,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        return Inertia::render('Products/Create', []);
+        return Inertia::render('Product/Create', []);
     }
 
     public function store(Request $request)
@@ -65,6 +65,9 @@ class ProductController extends Controller
                 'link_alt' => $link->link_alt
             ]);
         }
+
+        return redirect()->route('product.create');
+        // return $model;
 
     }
 
