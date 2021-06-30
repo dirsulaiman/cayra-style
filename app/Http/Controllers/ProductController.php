@@ -10,6 +10,9 @@ use App\Models\ProductDetail;
 use App\Models\ProductImage;
 use App\Models\ProductLink;
 
+use Storage;
+use File;
+
 class ProductController extends Controller
 {
     public function index () {
@@ -17,10 +20,17 @@ class ProductController extends Controller
         return Inertia::render('Products', ['products' => $model]);
     }
 
-    public function dummy ($id, $image) {
-        $model = Model::where('id', $id);
-        $model->image_id = $image;
-        // $model->update();
+    public function save_image (Request $request) {
+        $image = "";
+        if ($request['image']) {
+            $image = $request['image'];
+            $extension = $image->getClientOriginalExtension();
+            $name = time() .'_'. $image->getClientOriginalName();
+            Storage::disk('public_img')->put($name, File::get($image));
+            $image->name = $name;
+        } else  {
+            $iamge->name = "default.png";
+        }
     }
 
     public function create()
@@ -66,7 +76,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('product.create');
+        return redirect()->route('product.index');
         // return $model;
 
     }
