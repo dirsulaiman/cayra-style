@@ -1,5 +1,7 @@
 <template>
+    {{this.form}}
     <div class="flex h-full w-full">
+        
         <div class="rounded-lg shadow-lg mx-auto mt-10 p-5 w-50">
             <form @submit.prevent="submit">
                 <p class="text-lg text-center mx-auto p-3">Create Product</p>
@@ -17,15 +19,15 @@
                         <input class="rounded-lg border-gray-200 col-span-3" type="text" v-model="form.detail">
 
                         <label class="text-left text-base" for="image">Image</label>
-                        <input class="rounded-lg border-gray-200 col-span-3"  type="file" v-model="">
+                        <input class="rounded-lg border-gray-200 col-span-3"  type="file"   id="img">
 
                         <a class="col-start-4 rounded-full border-black text-sm p-1 text-center bg-gray-200" v-on:click="addItem">Link</a>
 
                         <div class="col-span-4">
                             <label class="rounded-xl bg-gray-100 text-sm text-center p-2 mx-4" for="image">Label</label>
-                            <input class="rounded-lg border-gray-200" type="text" v-model="form.detail">
+                            <input class="rounded-lg border-gray-200" type="text">
                             <label class="rounded-xl bg-gray-100 text-sm text-center p-2 mx-4" for="image">Link</label>
-                            <input class="rounded-lg border-gray-200" type="text" v-model="form.detail">
+                            <input class="rounded-lg border-gray-200" type="text" >
                         </div>
 
                         <button type="submit" class="col-start-4 rounded-full bg-green-300 p-2 text-sm text-white">Simpan</button>
@@ -52,14 +54,35 @@
         },
         methods: {
             submit() {
-                this.form
-                    .transform(data => ({
-                        ... data,
-                    }))
-                    .post(this.route('product.store'), {
-                        onFinish: () => this.form.reset('name', 'price', 'description', 'detail', 'images', 'links',),
-                    })
+                // this.form
+                //     .transform(data => ({
+                //         ... data,
+                //     }))
+                //     .post(this.route('product.store'), {
+                //         onFinish: () => this.form.reset(),
+                //     })
+
+                let data = new FormData();
+                data.append('name', this.form.name);
+                data.append('price', this.form.price);
+                data.append('description', this.form.description);
+                data.append('detail', this.form.detail);
+
+                let image = document.querySelector("#img").files[0];
+                if (image) {
+                    data.append('images', image);
+                }
+
+                axios.post(this.route('product.store'), data)
+                .then ( (response) => {
+                    // this.form.reset();
+                })
+                .catch (
+                    console.log(error)
+                );
+                console.log('form selesai')
             },
+
             addItem () {
                 console.log("test");
             }
