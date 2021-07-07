@@ -33,4 +33,6 @@ Route::group(['prefix' => 'product'], function () {
     Route::post('store', [ProductController::class, 'store'])->name('product.store');
 });
 
-Route::get('/products', [ProductController::class, 'index'])->middleware(['role:owner'])->name('product.index');
+// Route::get('/products', [ProductController::class, 'index'])->middleware(['role:owner'])->name('product.index');
+
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
