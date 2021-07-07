@@ -45,6 +45,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'description' => $request->description
         ]);
+        return;
 
         // check if detail
         $detail = $request->detail;
