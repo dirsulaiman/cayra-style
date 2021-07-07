@@ -19,6 +19,7 @@ class CreateProductLinksTable extends Migration
             $table->string('name');
             $table->string('link');
             $table->string('link_alt')->nullable();
+            $table->string('color');
             $table->timestamps();
         });
     }
