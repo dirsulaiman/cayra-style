@@ -39,21 +39,22 @@
                 <label class="block text-gray-700 text-sm mb-2">
                     Link
                 </label>
-                <div class="grid space-y-2 md:grid-cols-4 mb-3 md:space-x-3 border border-gray-200 rounded p-2 md:p-0 md:border-none md:space-y-0">
-                    <input class="shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Label">
+                <div class="grid space-y-2 md:grid-cols-4 mb-3 md:space-x-3 border border-gray-200 rounded p-2 md:p-0 md:border-none md:space-y-0"
+                v-for="(link, index) of form.links">
+                    <input class="shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline" type="text" v-model="form.links[index].label" placeholder="Label">
 
-                    <input class="shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Link">
+                    <input class="shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline" type="text" v-model="form.links[index].link" placeholder="Link">
 
-                    <input class="shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Link Alternatif (opsional)">
+                    <input class="shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline" type="text" v-model="form.links[index].link_alt" placeholder="Link Alternatif (opsional)">
                     
                     <span>
-                        <select class="appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                            <option>Hijau</option>
-                            <option>Biru</option>
-                            <option>Kuning</option>
+                        <select class="appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="form.links[index].color" id="color">
+                            <option value="00FF00">Hijau</option>
+                            <option value="0000FF">Biru</option>
+                            <option value="00FFFF">Kuning</option>
                         </select>
-                        <a class="rounded border-none text-sm text-white p-2 text-center bg-red-600 cursor-pointer"
-                v-on:click="deleteItem">X</a>
+                        <a class="rounded-full border-none text-sm text-white p-2 text-center bg-red-600 cursor-pointer"
+                v-on:click="deleteItem" @click="deleteItem(link)">X</a>
                     </span>
                 </div>
                     
@@ -87,7 +88,14 @@
                     description: '',
                     detail: '',
                     images: [],
-                    links: [],
+                    links: [
+                        {
+                            label: null,
+                            link: null,
+                            link_alt: null,
+                            color: null,
+                        }
+                    ],
                 })
             }
         },
@@ -115,12 +123,20 @@
             },
 
             addItem() {
-                console.log("test");
+                new_link = {
+                    label: null,
+                    link: null,
+                    link_alt: null,
+                    color: null,
+                }
+                this.form.links.push(new_link);
+                // console.log(this.form.links);
             },
 
-            deleteItem() {
-                console.log("test delete");
-            },
+            deleteItem (link) {
+                const filterList = this.form.links.filter(element => element !== link);
+                this.form.links = filterList;
+            }
         },
     }
 </script>
