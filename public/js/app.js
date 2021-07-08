@@ -19047,38 +19047,51 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         price: '',
         description: '',
-        detail: [],
+        detail: '',
         images: [],
-        links: []
+        links: [{
+          label: null,
+          link: null,
+          link_alt: null,
+          color: null
+        }]
       })
     };
   },
   methods: {
     submit: function submit() {
-      // this.form
-      //     .transform(data => ({
-      //         ... data,
-      //     }))
-      //     .post(this.route('product.store'), {
-      //         onFinish: () => this.form.reset(),
-      //     })
+      var _this = this;
+
       var data = new FormData();
       data.append('name', this.form.name);
       data.append('price', this.form.price);
-      data.append('description', this.form.description);
-      data.append('detail', this.form.detail);
-      var image = document.querySelector("#img").files[0];
+      data.append('description', this.form.description); // data.append('detail', this.form.detail);
+
+      var image = document.querySelector("#image").files[0];
 
       if (image) {
         data.append('images', image);
       }
 
-      axios.post(this.route('product.store'), data).then(function (response) {// this.form.reset();
-      })["catch"](console.log(error));
+      axios.post(this.route('product.store'), data).then(function (response) {
+        _this.form.reset();
+      })["catch"](console.log("error"));
       console.log('form selesai');
     },
     addItem: function addItem() {
-      console.log("test");
+      new_link = {
+        label: null,
+        link: null,
+        link_alt: null,
+        color: null
+      };
+      this.form.links.push(new_link); // console.log(this.form.links);
+    },
+    deleteItem: function deleteItem(link) {
+      var filterList = this.form.links.filter(function (element) {
+        return element !== link;
+      });
+      this.form.links = filterList;
     }
   }
 });
@@ -23277,124 +23290,198 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"w-full max-w-xs\"><form class=\"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4\"><div class=\"mb-4\"><label class=\"block text-gray-700 text-sm mb-2\"> Nama Barang </label><input class=\"shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline\" id=\"name\" type=\"text\" placeholder=\"Nama barang\"></div><div class=\"mb-4\"><label class=\"block text-gray-700 text-sm mb-2\"> Harga </label><input class=\"shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline\" id=\"name\" type=\"text\" placeholder=\"Nama barang\"></div><div class=\"flex items-center justify-between\"><button class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline\" type=\"button\"> Sign In </button><a class=\"inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800\" href=\"#\"> Forgot Password? </a></div></form><p class=\"text-center text-gray-500 text-xs\"> ©2020 Acme Corp. All rights reserved. </p></div>", 1);
-
-var _hoisted_2 = {
-  "class": "flex h-full w-full"
-};
-var _hoisted_3 = {
-  "class": "rounded-lg shadow-lg mx-auto mt-10 p-5 w-50"
+var _hoisted_1 = {
+  "class": "flex w-full"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-  "class": "text-lg text-center mx-auto p-3"
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  "class": "text-lg text-center mx-auto p-3 text-gray-800"
 }, "Create Product", -1
 /* HOISTED */
 );
 
+var _hoisted_3 = {
+  "class": "mb-4"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "block text-gray-700 text-sm mb-2"
+}, " Nama Barang ", -1
+/* HOISTED */
+);
+
 var _hoisted_5 = {
-  "class": "grid grid-cols-4 gap-x-5 gap-y-2"
+  "class": "mb-4"
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-left text-base",
-  "for": "name"
-}, "Nama", -1
+  "class": "block text-gray-700 text-sm mb-2"
+}, " Harga ", -1
 /* HOISTED */
 );
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-left text-base ",
-  "for": "price"
-}, "Harga", -1
-/* HOISTED */
-);
+var _hoisted_7 = {
+  "class": "mb-4"
+};
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-left text-base",
-  "for": "description"
-}, "Deskripsi", -1
+  "class": "block text-gray-700 text-sm mb-2"
+}, " Deskripsi ", -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-left text-base",
-  "for": "detail"
-}, "Detail", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "mb-4"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "block text-gray-700 text-sm mb-2"
+}, " Gambar Barang "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  "class": "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline",
+  id: "image",
+  type: "file"
+})], -1
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "text-left text-base",
-  "for": "image"
-}, "Image", -1
+var _hoisted_10 = {
+  "class": "mb-4",
+  id: "link"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "block text-gray-700 text-sm mb-2"
+}, " Link ", -1
 /* HOISTED */
 );
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  "class": "rounded-lg border-gray-200 col-span-3",
-  type: "file",
-  id: "img"
-}, null, -1
+var _hoisted_12 = {
+  "class": "grid space-y-2 md:grid-cols-4 mb-3 md:space-x-3 border border-gray-200 rounded p-2 md:p-0 md:border-none md:space-y-0"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
+  value: "00FF00"
+}, "Hijau", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-span-4\"><label class=\"rounded-xl bg-gray-100 text-sm text-center p-2 mx-4\" for=\"image\">Label</label><input class=\"rounded-lg border-gray-200\" type=\"text\"><label class=\"rounded-xl bg-gray-100 text-sm text-center p-2 mx-4\" for=\"image\">Link</label><input class=\"rounded-lg border-gray-200\" type=\"text\"></div><button type=\"submit\" class=\"col-start-4 rounded-full bg-green-300 p-2 text-sm text-white\">Simpan</button>", 2);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
+  value: "0000FF"
+}, "Biru", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
+  value: "00FFFF"
+}, "Kuning", -1
+/* HOISTED */
+);
+
+var _hoisted_16 = {
+  "class": "mt-3 mb-3"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "items-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
+  type: "submit"
+}, " Simpan ")], -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.form) + " ", 1
   /* TEXT */
-  ), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+    "class": "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto",
     onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.submit && $options.submit.apply($options, arguments);
     }, ["prevent"]))
-  }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-    "class": "rounded-lg border-gray-200 col-span-3",
+  }, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline",
+    id: "name",
     type: "text",
-    name: "name",
+    placeholder: "Nama barang",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.form.name = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-    "class": "rounded-lg border-gray-200 col-span-3",
-    type: "number",
-    name: "price",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.form.price = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.price]]), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-    "class": "rounded-lg border-gray-200 col-span-3",
-    type: "text",
-    name: "description",
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $data.form.description = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]]), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-    "class": "rounded-lg border-gray-200 col-span-3",
-    type: "text",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return $data.form.detail = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.detail]]), _hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-    "class": "col-start-4 rounded-full border-black text-sm p-1 text-center bg-gray-200",
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline",
+    id: "price",
+    type: "number",
+    placeholder: "Harga",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.form.price = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    "class": "shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline",
+    id: "description",
+    type: "text",
+    placeholder: "Deskripsi Singkat",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.form.description = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]])]), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [_hoisted_11, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.form.links, function (link, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      "class": "shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline",
+      type: "text",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $data.form.links[index].label = $event;
+      },
+      placeholder: "Label"
+    }, null, 8
+    /* PROPS */
+    , ["onUpdate:modelValue"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.links[index].label]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      "class": "shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline",
+      type: "text",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $data.form.links[index].link = $event;
+      },
+      placeholder: "Link"
+    }, null, 8
+    /* PROPS */
+    , ["onUpdate:modelValue"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.links[index].link]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      "class": "shadow appearance-none border border-gray-200 rounded py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline",
+      type: "text",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $data.form.links[index].link_alt = $event;
+      },
+      placeholder: "Link Alternatif (opsional)"
+    }, null, 8
+    /* PROPS */
+    , ["onUpdate:modelValue"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.links[index].link_alt]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+      "class": "appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $data.form.links[index].color = $event;
+      },
+      id: "color"
+    }, [_hoisted_13, _hoisted_14, _hoisted_15], 8
+    /* PROPS */
+    , ["onUpdate:modelValue"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.links[index].color]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+      "class": "rounded-full border-none text-sm text-white p-2 text-center bg-red-600 cursor-pointer",
+      onClick: [_cache[4] || (_cache[4] = function () {
+        return $options.deleteItem && $options.deleteItem.apply($options, arguments);
+      }), function ($event) {
+        return $options.deleteItem(link);
+      }]
+    }, "X", 8
+    /* PROPS */
+    , ["onClick"])])]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    "class": "rounded border-none text-sm text-white p-2 text-center bg-green-300 cursor-pointer",
     onClick: _cache[5] || (_cache[5] = function () {
       return $options.addItem && $options.addItem.apply($options, arguments);
     })
-  }, "Link"), _hoisted_12])], 32
+  }, "Tambah Link")]), _hoisted_17], 32
   /* HYDRATE_EVENTS */
-  )])])], 64
+  )])], 64
   /* STABLE_FRAGMENT */
   );
 }
