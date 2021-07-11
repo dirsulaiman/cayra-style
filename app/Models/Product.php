@@ -20,9 +20,9 @@ class Product extends Model
         'description'
     ];
 
-    public function detail()
+    public function details()
     {
-        return $this->hasOne(ProductDetail::class, 'product_id');
+        return $this->hasMany(ProductDetail::class, 'product_id');
     }
 
     public function images()
