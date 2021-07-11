@@ -29,11 +29,31 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2">
+                    Kategory
+                </label>
+                <div class="grid">
+                    <span v-for="(category, index) of form.categories">
+                        <input
+                        class="shadow appearance-none border border-gray-200 rounded w-40 py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline"
+                        id="description" type="text" 
+                        maxlength="13"
+                        placeholder="Kategori" v-model="form.categories[index]">
+                    </span>
+                    <a class="rounded border-none text-sm text-white p-2 text-center bg-green-300 cursor-pointer"
+                v-on:click="addCategory">+</a>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm mb-2">
                     Gambar Barang
                 </label>
                 <input
                     class="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-600 leading-tight focus:outline-none focus:shadow-outline"
-                    id="image" type="file" >
+                    style="display:none"
+                    id="image" type="file" @change="onSelectedFile"
+                    ref="fileInput">
+                <button @click="$refs.fileInput.click()" type="button">Select Image</button>
+             
             </div>
             <div class="mb-4" id="link">
                 <label class="block text-gray-700 text-sm mb-2">
@@ -86,57 +106,69 @@
                     name: '',
                     price: '',
                     description: '',
-                    detail: '',
-                    images: [],
-                    links: [
-                        {
-                            label: null,
-                            link: null,
-                            link_alt: null,
-                            color: null,
-                        }
-                    ],
+                    categories: [""],
+                    images: '',
+                    links: [{
+                        label: null,
+                        link: null,
+                        link_alt: null,
+                        color: null,
+                    }],
                 })
             }
         },
         methods: {
+            onSelectedFile (event) {
+                let img = event.target.files[0];
+                this.form.images = img;
+            },
+
             submit() { 
                 let data = new FormData();
                 data.append('name', this.form.name);
                 data.append('price', this.form.price);
                 data.append('description', this.form.description);
-                // data.append('detail', this.form.detail);
+                data.append('categories', this.form.categories);
 
-                let image = document.querySelector("#image").files[0];
-                if (image) {
-                    data.append('images', image);
-                }
+                data.append('images', this.form.images);
+
+                data.append('links', this.form.links);
 
                 axios.post(this.route('product.store'), data)
                     .then((response) => {
                         this.form.reset();
                     })
-                    .catch(
-                        console.log("error")
-                    );
-                console.log('form selesai')
+                    .catch( error => {
+                        console.log("Error : ", erro)
+                    });
+                // console.log(data)
             },
 
             addItem() {
-                new_link = {
+                let new_link = {
                     label: null,
                     link: null,
                     link_alt: null,
                     color: null,
                 }
                 this.form.links.push(new_link);
-                // console.log(this.form.links);
+                // console.log("add item");
             },
 
             deleteItem (link) {
                 const filterList = this.form.links.filter(element => element !== link);
                 this.form.links = filterList;
-            }
+            },
+
+            addCategory() {
+                let category = "";
+                this.form.categories.push(category);
+            },
+
+            deleteCategory (item) {
+                const filterList = this.form.categories.filter(element => element !== item);
+                this.form.categories = filterList;
+            },
         },
     }
 </script>
