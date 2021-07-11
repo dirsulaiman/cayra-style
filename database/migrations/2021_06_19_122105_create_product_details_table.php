@@ -15,8 +15,8 @@ class CreateProductDetailsTable extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('product_id');
             $table->string('category');
-            // $table->string('link_shopee')->nullable();
             $table->timestamps();
         });
     }
