@@ -40,45 +40,74 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // $count = 0;
+        // foreach ( as $c){
+        //     $count++;
+        // }
+        return ((json_decode($request->categories, false)));
+        
         $model = Model::create([
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description
         ]);
-        return;
+        
 
         // check if detail
-        $detail = $request->detail;
-        if ($detail) {
-            ProductDetail::create([
-                'category' => $detail->category
+        // $detail = $request->detail;
+        // if ($detail) {
+        //     ProductDetail::create([
+        //         'category' => $detail->category
+        //     ]);
+        // }
+
+        try{
+            // check if image
+            if ($request->hasFile('images')) {
+                $image = $request->file('images');
+                $image->extension = $image->getClientOriginalExtension();
+                $image->original_name = $image->getClientOriginalName();
+                $name = time() .'_'. $image->original_name;
+                Storage::disk('public_img')->put($name, File::get($image));
+                $image->name = $name;
+            } else  {
+                $image->name = "default.png";
+                $image->original_name = "default.png";
+            }
+
+            $product_id = Model::where('name', $request->name)->first()->id;
+
+            ProductImage::create([
+                'product_id' => $product_id,
+                'filename' => $image->name,
+                'dir' => '/storage/public/images',
+                'is_thumbnail' => false
+            ]);
+            
+
+            // check if link
+            // $links = $request->links;
+            // foreach ($links as $link) {
+                // ProductLink::create([
+                //     'product_id' => $model->id,
+                //     'name' => $link->name,
+                //     'link' => $link->link,
+                //     'link_alt' => $link->link_alt
+                // ]);
+            // }
+            return response()->json([
+                'message' => 'Success',
+                'req' => $request
             ]);
         }
-
-        // check if image
-        $images = $request->images;
-        foreach ($images as $image) {
-            ProductImage::create([
-                'product_id' => $model->id,
-                'filename' => $image->filename,
-                'dir' => $image->dir,
-                'is_thumbnail' => $image->is_thumbnail
-            ]);
+        // return redirect()->route('product.index');
+        catch(\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'req' => $request
+            ], 500);
         }
         
-        // check if link
-        $links = $request->links;
-        foreach ($links as $link) {
-            ProductImage::create([
-                'product_id' => $model->id,
-                'name' => $link->name,
-                'link' => $link->link,
-                'link_alt' => $link->link_alt
-            ]);
-        }
-
-        return redirect()->route('product.index');
-        // return $model;
 
     }
 
